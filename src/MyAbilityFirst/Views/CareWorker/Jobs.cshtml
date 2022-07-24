@@ -1,0 +1,107 @@
+﻿@model PagedList.IPagedList<MyAbilityFirst.Models.JobViewModel>
+@using PagedList.Mvc;
+@{
+	ViewBag.Title = "Index";
+}
+
+<div class="navbar-left">
+	@Html.Action("_MyAccountSidebar", "MyAccount")
+</div>
+<div class="main-content-wrapper">
+	<div class="row">
+		<div class="col-md-12">
+			<h1>Current jobs in your coverage</h1>
+
+			<div class="card card-solid">
+				<div class="alert alert-success alert-dismissable">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<strong>Tip: </strong> Adding Coverage Radius in your profile to get more jobs
+				</div>
+				<div><h4>Total: @ViewBag.Total jobs</h4> </div>
+
+				<table class="table table-striped">
+					<tr>
+						<th>Job Title</th>
+						<th>Updated</th>
+						<th>Suburb</th>
+						<th>Distance</th>
+						<th>Service</th>
+						<th>Action</th>
+					</tr>
+					@foreach (var item in Model)
+					{
+					<tr>
+						<td>
+							@if (item.Title != null)
+							{
+								var s = DateTime.Now.Subtract(item.UpdatedAt.Value).TotalHours;
+								if (@s > 4 && @item.Status.ToString() == "New")
+								{
+								<span class="glyphicon glyphicon-flag" style="color:red" title="Over 4 hours"></span>
+								}
+								<span>#</span>@Html.DisplayFor(modelItem => item.Id)
+								if (item.Title.Length > 30)
+								{
+								<span style="color:brown">
+									@item.Title.Substring(0, 30).ToString() ..
+								</span>
+								}
+								else
+								{
+								<span style="color:brown">
+									@Html.DisplayFor(modelItem => item.Title)
+								</span>
+								}
+							}
+						</td>
+						<td>
+							@item.UpdatedAt
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Address.Suburb)
+						</td>
+						<td>
+							<span class="glyphicon glyphicon-map-marker" style="color:green"></span>
+							@{if (item.Distance < 1000)
+								{
+								@Html.Raw(String.Format("{0:0.0}", item.Distance))
+								}
+								else
+								{
+								<span>?</span>
+								}
+							}
+							<span>km</span>
+						</td>
+						<td>
+							@Convert.ToDateTime(item.ServicedAt).ToString("dd MMM yyyy")
+						</td>
+						<td>
+							@if (ViewBag.CareWorkStatus == "Active")
+							{
+							<div style="padding-bottom:8px">
+								@Html.ActionLink("Job Details", "Job", "CareWorker", new { jobID = item.Id }, new { @class = "btn btn-default btn-xs" }) <span> </span>
+							</div>
+								if (item.CareWorkerID != ViewBag.CareWorkerID)
+								{
+								@Html.ActionLink("Express Interesting", "ExpressInteresting", "CareWorker", new { jobID = item.Id }, new { @class = "btn btn-warning btn-xs", @title = "Express interesting for this job" })
+								}
+							}
+							else
+							{
+							<span style="color:red"> Your account has not actived</span>
+							}
+
+						</td>
+
+					</tr>
+								}
+				</table>
+
+				<br />
+				Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+				@Html.PagedListPager(Model, page => Url.Action("jobs", new { page }))
+			</div>
+		</div>
+	</div>
+</div>

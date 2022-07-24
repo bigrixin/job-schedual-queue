@@ -1,0 +1,479 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5FB65AE4-C394-43C6-A803-B6018C7D7E11}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MyAbilityFirst.Infrastructure.Data</RootNamespace>
+    <AssemblyName>MyAbilityFirst.Infrastructure.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=4.4.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Autofac.4.4.0\lib\net45\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Data.Edm.5.8.2\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Data.OData.5.8.2\lib\net40\Microsoft.Data.OData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Data.Services.Client.5.8.2\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=8.1.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WindowsAzure.Storage.8.1.4\lib\net45\Microsoft.WindowsAzure.Storage.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Spatial, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Spatial.5.8.2\lib\net40\System.Spatial.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CompositionRoot\EntityFrameworkModule.cs" />
+    <Compile Include="DbContext\MyAbilityFirstDbContext.cs" />
+    <Compile Include="Migrations\201702070315422_InitialCreate.cs" />
+    <Compile Include="Migrations\201702070315422_InitialCreate.Designer.cs">
+      <DependentUpon>201702070315422_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702070328388_AddSuburbTable.cs" />
+    <Compile Include="Migrations\201702070328388_AddSuburbTable.Designer.cs">
+      <DependentUpon>201702070328388_AddSuburbTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702070335269_AddCategorySubcategoryTableForUserPreferences.cs" />
+    <Compile Include="Migrations\201702070335269_AddCategorySubcategoryTableForUserPreferences.Designer.cs">
+      <DependentUpon>201702070335269_AddCategorySubcategoryTableForUserPreferences.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702080947330_AddJobTable.cs" />
+    <Compile Include="Migrations\201702080947330_AddJobTable.Designer.cs">
+      <DependentUpon>201702080947330_AddJobTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702140026182_AddPictureURLToJob.cs" />
+    <Compile Include="Migrations\201702140026182_AddPictureURLToJob.Designer.cs">
+      <DependentUpon>201702140026182_AddPictureURLToJob.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702151011184_AddContactTable.cs" />
+    <Compile Include="Migrations\201702151011184_AddContactTable.Designer.cs">
+      <DependentUpon>201702151011184_AddContactTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702240326301_AddShortlistTable.cs" />
+    <Compile Include="Migrations\201702240326301_AddShortlistTable.Designer.cs">
+      <DependentUpon>201702240326301_AddShortlistTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702240341228_AddSelectedFieldInShortlist.cs" />
+    <Compile Include="Migrations\201702240341228_AddSelectedFieldInShortlist.Designer.cs">
+      <DependentUpon>201702240341228_AddSelectedFieldInShortlist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702240348435_AddStatusToUser.cs" />
+    <Compile Include="Migrations\201702240348435_AddStatusToUser.Designer.cs">
+      <DependentUpon>201702240348435_AddStatusToUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702240354460_AddCareTypeIDToPatient.cs" />
+    <Compile Include="Migrations\201702240354460_AddCareTypeIDToPatient.Designer.cs">
+      <DependentUpon>201702240354460_AddCareTypeIDToPatient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702271154125_AddElmahObjects.cs" />
+    <Compile Include="Migrations\201702271154125_AddElmahObjects.Designer.cs">
+      <DependentUpon>201702271154125_AddElmahObjects.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703020115355_AddLocationAndSocialDetailsToCareWorker.cs" />
+    <Compile Include="Migrations\201703020115355_AddLocationAndSocialDetailsToCareWorker.Designer.cs">
+      <DependentUpon>201703020115355_AddLocationAndSocialDetailsToCareWorker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703020118399_AddEmploymentHistoryTable.cs" />
+    <Compile Include="Migrations\201703020118399_AddEmploymentHistoryTable.Designer.cs">
+      <DependentUpon>201703020118399_AddEmploymentHistoryTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703020122390_AddEmploymentFormalEducationTable.cs" />
+    <Compile Include="Migrations\201703020122390_AddEmploymentFormalEducationTable.Designer.cs">
+      <DependentUpon>201703020122390_AddEmploymentFormalEducationTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703020124268_AddEmploymentEmploymentReferenceTable.cs" />
+    <Compile Include="Migrations\201703020124268_AddEmploymentEmploymentReferenceTable.Designer.cs">
+      <DependentUpon>201703020124268_AddEmploymentEmploymentReferenceTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703020125281_AddEmploymentEmploymentAchievementTable.cs" />
+    <Compile Include="Migrations\201703020125281_AddEmploymentEmploymentAchievementTable.Designer.cs">
+      <DependentUpon>201703020125281_AddEmploymentEmploymentAchievementTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703020127032_AddAvailabilityTable.cs" />
+    <Compile Include="Migrations\201703020127032_AddAvailabilityTable.Designer.cs">
+      <DependentUpon>201703020127032_AddAvailabilityTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703020452578_AddCareWorkerIDToEmploymentAndAvailabilityTables.cs" />
+    <Compile Include="Migrations\201703020452578_AddCareWorkerIDToEmploymentAndAvailabilityTables.Designer.cs">
+      <DependentUpon>201703020452578_AddCareWorkerIDToEmploymentAndAvailabilityTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703022324146_AddGenderPreferenceIDToCareWorkerTable.cs" />
+    <Compile Include="Migrations\201703022324146_AddGenderPreferenceIDToCareWorkerTable.Designer.cs">
+      <DependentUpon>201703022324146_AddGenderPreferenceIDToCareWorkerTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703030544184_AddPersonalityIDToCareWorkerTable.cs" />
+    <Compile Include="Migrations\201703030544184_AddPersonalityIDToCareWorkerTable.Designer.cs">
+      <DependentUpon>201703030544184_AddPersonalityIDToCareWorkerTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703070120396_DeleteUrlsInPatientTable.cs" />
+    <Compile Include="Migrations\201703070120396_DeleteUrlsInPatientTable.Designer.cs">
+      <DependentUpon>201703070120396_DeleteUrlsInPatientTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703070400336_AddPatientIDToJobTable.cs" />
+    <Compile Include="Migrations\201703070400336_AddPatientIDToJobTable.Designer.cs">
+      <DependentUpon>201703070400336_AddPatientIDToJobTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703081234567_AddBookingRelatedTables.cs" />
+    <Compile Include="Migrations\201703081234567_AddBookingRelatedTables.Designer.cs">
+      <DependentUpon>201703081234567_AddBookingRelatedTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703081238456_AddRatingTable.cs" />
+    <Compile Include="Migrations\201703081238456_AddRatingTable.Designer.cs">
+      <DependentUpon>201703081238456_AddRatingTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703081432015_LinkBookingTableToCareWorkerTable.cs" />
+    <Compile Include="Migrations\201703081432015_LinkBookingTableToCareWorkerTable.Designer.cs">
+      <DependentUpon>201703081432015_LinkBookingTableToCareWorkerTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703090103423_AddSelectedToAvailabilityTable.cs" />
+    <Compile Include="Migrations\201703090103423_AddSelectedToAvailabilityTable.Designer.cs">
+      <DependentUpon>201703090103423_AddSelectedToAvailabilityTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703120231124_AddUserAttachmentTable.cs" />
+    <Compile Include="Migrations\201703120231124_AddUserAttachmentTable.Designer.cs">
+      <DependentUpon>201703120231124_AddUserAttachmentTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703160019572_MoveShortlistToUserTable.cs" />
+    <Compile Include="Migrations\201703160019572_MoveShortlistToUserTable.Designer.cs">
+      <DependentUpon>201703160019572_MoveShortlistToUserTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703210037487_RenamedUserIDToOwnerUserID.cs" />
+    <Compile Include="Migrations\201703210037487_RenamedUserIDToOwnerUserID.Designer.cs">
+      <DependentUpon>201703210037487_RenamedUserIDToOwnerUserID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703222227337_AddAddressObjectInUserTable.cs" />
+    <Compile Include="Migrations\201703222227337_AddAddressObjectInUserTable.Designer.cs">
+      <DependentUpon>201703222227337_AddAddressObjectInUserTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703230347155_AddAddressObjectInJobTable.cs" />
+    <Compile Include="Migrations\201703230347155_AddAddressObjectInJobTable.Designer.cs">
+      <DependentUpon>201703230347155_AddAddressObjectInJobTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705100317376_AddedSelectedToUserSubcategory.cs" />
+    <Compile Include="Migrations\201705100317376_AddedSelectedToUserSubcategory.Designer.cs">
+      <DependentUpon>201705100317376_AddedSelectedToUserSubcategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705110201377_RenameUserAttachmentToUseAttachmentID.cs" />
+    <Compile Include="Migrations\201705110201377_RenameUserAttachmentToUseAttachmentID.Designer.cs">
+      <DependentUpon>201705110201377_RenameUserAttachmentToUseAttachmentID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705110203087_AddMessageInBookingTable.cs" />
+    <Compile Include="Migrations\201705110203087_AddMessageInBookingTable.Designer.cs">
+      <DependentUpon>201705110203087_AddMessageInBookingTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705110206113_AddCareWorkerSearchView.cs" />
+    <Compile Include="Migrations\201705110206113_AddCareWorkerSearchView.Designer.cs">
+      <DependentUpon>201705110206113_AddCareWorkerSearchView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705110208445_AddFullTextIndexForCareWorkerSearchView.cs" />
+    <Compile Include="Migrations\201705110208445_AddFullTextIndexForCareWorkerSearchView.Designer.cs">
+      <DependentUpon>201705110208445_AddFullTextIndexForCareWorkerSearchView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705110210416_AddSproc_CareWorker_Search_ByPatientProfile.cs" />
+    <Compile Include="Migrations\201705110210416_AddSproc_CareWorker_Search_ByPatientProfile.Designer.cs">
+      <DependentUpon>201705110210416_AddSproc_CareWorker_Search_ByPatientProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705110215357_AddSpatialPointToAddress.cs" />
+    <Compile Include="Migrations\201705110215357_AddSpatialPointToAddress.Designer.cs">
+      <DependentUpon>201705110215357_AddSpatialPointToAddress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705110216311_AddSpatialIndexingForGeoPoint.cs" />
+    <Compile Include="Migrations\201705110216311_AddSpatialIndexingForGeoPoint.Designer.cs">
+      <DependentUpon>201705110216311_AddSpatialIndexingForGeoPoint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705110450440_AddOverallRateInCareWorkerTable.cs" />
+    <Compile Include="Migrations\201705110450440_AddOverallRateInCareWorkerTable.Designer.cs">
+      <DependentUpon>201705110450440_AddOverallRateInCareWorkerTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705190021117_AddOrganistionTable.cs" />
+    <Compile Include="Migrations\201705190021117_AddOrganistionTable.Designer.cs">
+      <DependentUpon>201705190021117_AddOrganistionTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705300636450_AddOrganisationIdInCareWorkerTable.cs" />
+    <Compile Include="Migrations\201705300636450_AddOrganisationIdInCareWorkerTable.Designer.cs">
+      <DependentUpon>201705300636450_AddOrganisationIdInCareWorkerTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705300700230_AddIndexInCareWorkerTable.cs" />
+    <Compile Include="Migrations\201705300700230_AddIndexInCareWorkerTable.Designer.cs">
+      <DependentUpon>201705300700230_AddIndexInCareWorkerTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705310044324_AddCoordinatorTable.cs" />
+    <Compile Include="Migrations\201705310044324_AddCoordinatorTable.Designer.cs">
+      <DependentUpon>201705310044324_AddCoordinatorTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705312346342_AddRatingStateInRatingTable.cs" />
+    <Compile Include="Migrations\201705312346342_AddRatingStateInRatingTable.Designer.cs">
+      <DependentUpon>201705312346342_AddRatingStateInRatingTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706012300353_AddCoordinatorIdInCareWorkerTable.cs" />
+    <Compile Include="Migrations\201706012300353_AddCoordinatorIdInCareWorkerTable.Designer.cs">
+      <DependentUpon>201706012300353_AddCoordinatorIdInCareWorkerTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706090458007_AddJobStatusInJobTable.cs" />
+    <Compile Include="Migrations\201706090458007_AddJobStatusInJobTable.Designer.cs">
+      <DependentUpon>201706090458007_AddJobStatusInJobTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706150411441_AddCareWorkerIDInJobTable.cs" />
+    <Compile Include="Migrations\201706150411441_AddCareWorkerIDInJobTable.Designer.cs">
+      <DependentUpon>201706150411441_AddCareWorkerIDInJobTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706160542422_AddCoordinatorJobTable.cs" />
+    <Compile Include="Migrations\201706160542422_AddCoordinatorJobTable.Designer.cs">
+      <DependentUpon>201706160542422_AddCoordinatorJobTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadModel\BookingData.cs" />
+    <Compile Include="ReadModel\JobData.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyAbilityFirst.Infrastructure\MyAbilityFirst.Infrastructure.csproj">
+      <Project>{6c332fd9-9a3a-446b-95c5-8d039043de94}</Project>
+      <Name>MyAbilityFirst.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyAbilityFirst.Domain\MyAbilityFirst.Domain.csproj">
+      <Project>{defaff21-0003-47e9-b882-0008bc882590}</Project>
+      <Name>MyAbilityFirst.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="Sql\Seed.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201702070315422_InitialCreate.resx">
+      <DependentUpon>201702070315422_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702070328388_AddSuburbTable.resx">
+      <DependentUpon>201702070328388_AddSuburbTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702070335269_AddCategorySubcategoryTableForUserPreferences.resx">
+      <DependentUpon>201702070335269_AddCategorySubcategoryTableForUserPreferences.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702080947330_AddJobTable.resx">
+      <DependentUpon>201702080947330_AddJobTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702151011184_AddContactTable.resx">
+      <DependentUpon>201702151011184_AddContactTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702140026182_AddPictureURLToJob.resx">
+      <DependentUpon>201702140026182_AddPictureURLToJob.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702240326301_AddShortlistTable.resx">
+      <DependentUpon>201702240326301_AddShortlistTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702240341228_AddSelectedFieldInShortlist.resx">
+      <DependentUpon>201702240341228_AddSelectedFieldInShortlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702240348435_AddStatusToUser.resx">
+      <DependentUpon>201702240348435_AddStatusToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702240354460_AddCareTypeIDToPatient.resx">
+      <DependentUpon>201702240354460_AddCareTypeIDToPatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702271154125_AddElmahObjects.resx">
+      <DependentUpon>201702271154125_AddElmahObjects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703020115355_AddLocationAndSocialDetailsToCareWorker.resx">
+      <DependentUpon>201703020115355_AddLocationAndSocialDetailsToCareWorker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703020118399_AddEmploymentHistoryTable.resx">
+      <DependentUpon>201703020118399_AddEmploymentHistoryTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703020122390_AddEmploymentFormalEducationTable.resx">
+      <DependentUpon>201703020122390_AddEmploymentFormalEducationTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703020124268_AddEmploymentEmploymentReferenceTable.resx">
+      <DependentUpon>201703020124268_AddEmploymentEmploymentReferenceTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703020125281_AddEmploymentEmploymentAchievementTable.resx">
+      <DependentUpon>201703020125281_AddEmploymentEmploymentAchievementTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703020127032_AddAvailabilityTable.resx">
+      <DependentUpon>201703020127032_AddAvailabilityTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703020452578_AddCareWorkerIDToEmploymentAndAvailabilityTables.resx">
+      <DependentUpon>201703020452578_AddCareWorkerIDToEmploymentAndAvailabilityTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703022324146_AddGenderPreferenceIDToCareWorkerTable.resx">
+      <DependentUpon>201703022324146_AddGenderPreferenceIDToCareWorkerTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703030544184_AddPersonalityIDToCareWorkerTable.resx">
+      <DependentUpon>201703030544184_AddPersonalityIDToCareWorkerTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703070120396_DeleteUrlsInPatientTable.resx">
+      <DependentUpon>201703070120396_DeleteUrlsInPatientTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703070400336_AddPatientIDToJobTable.resx">
+      <DependentUpon>201703070400336_AddPatientIDToJobTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703081234567_AddBookingRelatedTables.resx">
+      <DependentUpon>201703081234567_AddBookingRelatedTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703081238456_AddRatingTable.resx">
+      <DependentUpon>201703081238456_AddRatingTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703081432015_LinkBookingTableToCareWorkerTable.resx">
+      <DependentUpon>201703081432015_LinkBookingTableToCareWorkerTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703090103423_AddSelectedToAvailabilityTable.resx">
+      <DependentUpon>201703090103423_AddSelectedToAvailabilityTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703120231124_AddUserAttachmentTable.resx">
+      <DependentUpon>201703120231124_AddUserAttachmentTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703160019572_MoveShortlistToUserTable.resx">
+      <DependentUpon>201703160019572_MoveShortlistToUserTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703210037487_RenamedUserIDToOwnerUserID.resx">
+      <DependentUpon>201703210037487_RenamedUserIDToOwnerUserID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703222227337_AddAddressObjectInUserTable.resx">
+      <DependentUpon>201703222227337_AddAddressObjectInUserTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703230347155_AddAddressObjectInJobTable.resx">
+      <DependentUpon>201703230347155_AddAddressObjectInJobTable.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705100317376_AddedSelectedToUserSubcategory.resx">
+      <DependentUpon>201705100317376_AddedSelectedToUserSubcategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705110201377_RenameUserAttachmentToUseAttachmentID.resx">
+      <DependentUpon>201705110201377_RenameUserAttachmentToUseAttachmentID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705110203087_AddMessageInBookingTable.resx">
+      <DependentUpon>201705110203087_AddMessageInBookingTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705110206113_AddCareWorkerSearchView.resx">
+      <DependentUpon>201705110206113_AddCareWorkerSearchView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705110208445_AddFullTextIndexForCareWorkerSearchView.resx">
+      <DependentUpon>201705110208445_AddFullTextIndexForCareWorkerSearchView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705110210416_AddSproc_CareWorker_Search_ByPatientProfile.resx">
+      <DependentUpon>201705110210416_AddSproc_CareWorker_Search_ByPatientProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705110215357_AddSpatialPointToAddress.resx">
+      <DependentUpon>201705110215357_AddSpatialPointToAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705110216311_AddSpatialIndexingForGeoPoint.resx">
+      <DependentUpon>201705110216311_AddSpatialIndexingForGeoPoint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705110450440_AddOverallRateInCareWorkerTable.resx">
+      <DependentUpon>201705110450440_AddOverallRateInCareWorkerTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705190021117_AddOrganistionTable.resx">
+      <DependentUpon>201705190021117_AddOrganistionTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705300636450_AddOrganisationIdInCareWorkerTable.resx">
+      <DependentUpon>201705300636450_AddOrganisationIdInCareWorkerTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705300700230_AddIndexInCareWorkerTable.resx">
+      <DependentUpon>201705300700230_AddIndexInCareWorkerTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705310044324_AddCoordinatorTable.resx">
+      <DependentUpon>201705310044324_AddCoordinatorTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705312346342_AddRatingStateInRatingTable.resx">
+      <DependentUpon>201705312346342_AddRatingStateInRatingTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706012300353_AddCoordinatorIdInCareWorkerTable.resx">
+      <DependentUpon>201706012300353_AddCoordinatorIdInCareWorkerTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706090458007_AddJobStatusInJobTable.resx">
+      <DependentUpon>201706090458007_AddJobStatusInJobTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706150411441_AddCareWorkerIDInJobTable.resx">
+      <DependentUpon>201706150411441_AddCareWorkerIDInJobTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706160542422_AddCoordinatorJobTable.resx">
+      <DependentUpon>201706160542422_AddCoordinatorJobTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sql\Elmah.SqlServer.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

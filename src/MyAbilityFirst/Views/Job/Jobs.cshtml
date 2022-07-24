@@ -1,0 +1,122 @@
+﻿@model PagedList.IPagedList<MyAbilityFirst.Models.JobViewModel>
+@using PagedList.Mvc;
+@{
+	ViewBag.Title = "Index";
+}
+
+<div class="navbar-left">
+	@Html.Action("_MyAccountSidebar", "MyAccount")
+</div>
+
+<div class="main-content-wrapper">
+	<div class="row">
+		<div class="col-md-12">
+			<h1>My posted jobs</h1>
+
+			<div class="card card-solid">
+				<p>
+					@Html.ActionLink("Post a new job", "create", "Job", routeValues: null, htmlAttributes: new { title = "Post a Job", @class = "bt btn btn-success" })
+				</p>
+				<div><h4>Total: @ViewBag.Total jobs</h4> </div>
+				<table class="table table-striped">
+					<tr>
+						<th>@Html.ActionLink("Patient", "jobs", "Job", new { sortOrder = ViewBag.PatientSortParm, currentFilter = ViewBag.CurrentFilter }, null)</th>
+						<th>@Html.ActionLink("Title", "jobs", "Job", new { sortOrder = ViewBag.TitleSortParm, currentFilter = ViewBag.CurrentFilter }, null)</th>
+						<th>Description</th>
+						<th>@Html.ActionLink("Suburb", "jobs", "Job", new { sortOrder = ViewBag.AddressSortParm, currentFilter = ViewBag.CurrentFilter }, null)</th>
+						<th>Start</th>
+						<th>@Html.ActionLink("Status", "jobs", "Job", new { sortOrder = ViewBag.StatusSortParm, currentFilter = ViewBag.CurrentFilter }, null)</th>
+						<th>Action</th>
+ 
+					</tr>
+
+					@foreach (var item in Model)
+					{
+					<tr>
+						<td>
+							@{if (item.PatientId != 0)
+								{
+								@Html.ActionLink(item.PatientDropDownList.FirstOrDefault(s => s.Value == item.PatientId.ToString()).Text, "myaccount", "patient", new { id = item.PatientId }, null)
+								}
+							}
+						</td>
+
+						<td>
+							#@Html.DisplayFor(modelItem => item.Id)
+							@{
+								if (item.Title != null)
+								{
+									if (item.Title.Length > 24)
+									{
+									<span style="color:green">
+										@item.Title.Substring(0, 24).ToString() ..
+									</span>
+									}
+									else
+									{
+									<span style="color:green">
+										@Html.DisplayFor(modelItem => item.Title)
+									</span>
+									}
+								}
+							}
+						</td>
+						<td>
+							@{
+								if (item.Description != null)
+								{
+									if (item.Description.Length > 80)
+									{
+									<span style="color:brown">
+										@item.Description.Substring(0, 78).ToString() ..
+									</span>
+									}
+									else
+									{
+									<span style="color:brown">
+										@Html.DisplayFor(modelItem => item.Description)
+									</span>
+									}
+								}
+							}
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Address.Suburb)
+						</td>
+						<td>
+							<span style="color:orange">@Convert.ToDateTime(item.ServicedAt).ToString("ddMMM")</span>
+						</td>
+						<td align="center">
+
+							@if (item.Status.ToString() == "Interested" && item.CareWorkerID != null)
+							{
+							@Html.ActionLink(item.CareWorkerFirstName, "publicprofile", "profile", new { id = item.CareWorkerID }, new { target = "_blank" })
+							}
+							@Html.Partial("_JobStatus", item.Status)
+						</td>
+						<td align="left" width="120px">
+							<div style="padding-bottom:8px">
+								@if (item.Status.ToString() == "Interested" && item.CareWorkerID != null)
+								{
+							  	@Html.ActionLink("Accept", "booking/new", "Client", new { careWorkerID = item.CareWorkerID, jobID = item.Id }, new { @class = "btn btn-success btn-xs", @title = "Accept and send a formal booking to this Carer" })<span> </span>
+									@Html.ActionLink("Reject", "RejectCareWorker", "Client", new { careWorkerID = item.CareWorkerID, jobID = item.Id }, new { @class = "btn btn-warning btn-xs", @title = "Reject this Carer's requirement" })
+								}
+								@if (item.Status.ToString() == "New" || item.Status.ToString() == "Update")
+								{
+							  	@Html.ActionLink("Update", "Edit", new { id = item.Id }, new { @class = "btn btn-info btn-xs", @title = "Update the job" })<span> </span>
+							  	@Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-xs", @title = "Delete the job" })
+								}
+							</div>
+							@Html.ActionLink("View Job Details", "Details", new { id = item.Id }, new { @class = "btn btn-default btn-xs", @title = "Job details" })
+
+						</td>
+					</tr>
+								}
+				</table>
+				<br />
+				Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+				@Html.PagedListPager(Model, page => Url.Action("jobs", new { page }))
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,26 @@
+﻿@model MyAbilityFirst.Domain.JobStatus
+
+@switch (@Model.ToString())
+{
+	case "New":
+	<span class="label label-warning" title="This is a new job !">@Model.ToString()</span>
+		break;
+	case "Updated":
+	<span class="label label-danger" title="The job status has updated !">@Model.ToString()</span>
+		break;
+	case "Pending":
+	<span class="label label-primary" title="The job's booking request has send to a carer !">@Model.ToString()</span>
+		break;
+	case "Filled":
+	<span class="label label-success" title="A carer has accept the job's booking request !">@Model.ToString()</span>
+		break;
+	case "Completed":
+	<span class="label label-info" title="The job has completed !">@Model.ToString()</span>
+		break;
+	case "Cancelled":
+	<span class="label label-default" title="The job has cancelled by client !">@Model.ToString()</span>
+		break;
+	default:
+	<span class="label" style="background-color:antiquewhite; color:lightseagreen; font-size:smaller" >@Model.ToString()</span>
+		break;
+}

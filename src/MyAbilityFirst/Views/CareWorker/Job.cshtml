@@ -1,0 +1,40 @@
+﻿@model MyAbilityFirst.Models.JobViewModel
+@{
+	ViewBag.Title = "Details";
+}
+<div class="navbar-left">
+	@Html.Action("_MyAccountSidebar", "MyAccount")
+</div>
+<div class="main-content-wrapper">
+	<div class="row">
+		<div class="col-md-12">
+			<h2>The job details</h2>
+			@if (Model != null)
+			{
+			<hr/>
+			<dl class="dl-horizontal">
+				<dt>@Html.DisplayNameFor(model => model.ClientFirstName)</dt>
+				<dd>@Html.DisplayFor(model => model.ClientFirstName)</dd>
+				<dt>@Html.DisplayNameFor(model => model.Title)</dt>
+				<dd>@Html.DisplayFor(model => model.Title)</dd>
+				<dt>@Html.DisplayNameFor(model => model.Description)</dt>
+				<dd>@Html.DisplayFor(model => model.Description)</dd>
+				<dt>@Html.DisplayNameFor(model => model.Address)</dt>
+				<dd>@Html.DisplayFor(model => model.Address.Suburb)</dd>
+				<dt>@Html.DisplayNameFor(model => model.GenderId)</dt>
+				<dd>@Model.GenderDropDownList.FirstOrDefault(g => g.Value == Model.GenderId.ToString()).Text</dd>
+				<dt>@Html.DisplayNameFor(model => model.ServiceId)</dt>
+				<dd>@Model.ServiceDropDownList.FirstOrDefault(s => s.Value == Model.ServiceId.ToString()).Text</dd>
+				<dt>@Html.DisplayNameFor(model => model.ServicedAt)</dt>
+				<dd>@Html.DisplayFor(model => model.ServicedAt)</dd>
+				<dt>@Html.DisplayNameFor(model => model.Status)</dt>
+				<dd>@Html.Partial("_JobStatus", Model.Status)</dd>
+			</dl>
+			}
+			<hr />
+			@Html.ActionLink(" Go back to job list", "Jobs", "CareWorker", null, new { @class = "btn btn-success btn-sm" })
+			@Html.ActionLink(" Express interesting", "ExpressInteresting", "CareWorker", new { jobID = Model.Id }, new { @class = "btn btn-warning btn-sm", @title = "Express interesting for this job" })
+
+		</div>
+	</div>
+</div>

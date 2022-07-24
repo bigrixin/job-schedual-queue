@@ -1,0 +1,71 @@
+﻿@model IEnumerable<MyAbilityFirst.Models.UrgentJobViewModel>
+@{
+	ViewBag.Title = "My Pending Task";
+}
+
+<div class="container-fluid">
+	<div class="navbar-left">
+		@Html.Partial("_LeftSideMenu")
+	</div>
+	<div class="main-content-wrapper">
+		<div class="row">
+			<h2>My pending tasks</h2>
+
+			<div class="card card-solid">
+				@if (@ViewBag.Total > 0)
+				{
+				<div class="alert alert-success alert-dismissable fade in">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<strong>Tip:</strong> There are @ViewBag.Total jobs in the queue that posted over 4 hours have not filled. <span> </span>
+					@Html.ActionLink("Give me a job", "getpendingjob", null, new { @class = "btn btn-success btn-xs", @title = "get and hold next job" })
+				</div>
+				}
+				<table class="table table-striped">
+					<tr>
+						<th>First Name</th>
+						<th>Title</th>
+						<th>Description</th>
+						<th>Service At</th>
+						<th>Action</th>
+					</tr>
+					@foreach (var item in Model)
+					{
+					<tr>
+						<td>
+							@Html.DisplayFor(modelItem => item.ClientFirstName)
+						</td>
+						<td>
+							@if (item.Title.Length > 20)
+							{
+							@item.Title.Substring(0, 20).ToString() @:<span>...</span>
+							}
+							else
+							{
+							@Html.DisplayFor(modelItem => item.Title)
+							}
+						</td>
+						<td>
+							@if (item.Description.Length > 50)
+							{
+							@item.Description.Substring(0, 50).ToString() @:<span>...</span>
+							}
+							else
+							{
+							@Html.DisplayFor(modelItem => item.Description)
+							}
+						</td>
+						<td>
+							@Convert.ToDateTime(item.ServicedAt).ToString("dd MMM yyyy")
+						</td>
+						<td>
+
+							@Html.ActionLink("Details", "ProcessPendingJob", new { jobID = item.Id }, new { @class = "btn btn-info btn-sm", @title = "job detials" })
+						</td>
+					</tr>
+					}
+				</table>
+				<hr />
+			</div>
+		</div>
+	</div>
+</div>

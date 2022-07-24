@@ -1,0 +1,97 @@
+﻿@model MyAbilityFirst.Models.UrgentJobViewModel
+@{
+	ViewBag.Title = "Job Status";
+}
+
+
+<div class="container-fluid">
+	<div class="navbar-left">
+		@Html.Partial("_LeftSideMenu")
+	</div>
+	<div class="main-content-wrapper">
+		<div class="row">
+			<h2>Job Details </h2>
+			<div class="card card-solid">
+				@using (Html.BeginForm())
+				{
+				@Html.AntiForgeryToken()
+					@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+					@Html.HiddenFor(model => model.Id)
+					@Html.HiddenFor(model => model.Title)
+					@Html.HiddenFor(model => model.Description)
+					@Html.HiddenFor(model => model.ServicedAt)
+					<dl class="dl-horizontal">
+						<dt>@Html.DisplayNameFor(model => model.ClientFirstName)</dt>
+						<dd>
+							@Html.DisplayFor(model => model.ClientFirstName)
+						</dd>
+						<dt>@Html.DisplayNameFor(model => model.ClientPhone)</dt>
+						<dd>@Html.DisplayFor(model => model.ClientPhone)</dd>
+						<dt>@Html.DisplayNameFor(model => model.ClientEmail)</dt>
+						<dd>@Html.DisplayFor(model => model.ClientEmail)</dd>
+						<dt>@Html.DisplayNameFor(model => model.GenderId)</dt>
+						<dd>@Model.GenderDropDownList.FirstOrDefault(g => g.Value == Model.GenderId.ToString()).Text</dd>
+						<dt>@Html.DisplayNameFor(model => model.Title)</dt>
+						<dd>@Html.DisplayFor(model => model.Title)</dd>
+						<dt>@Html.DisplayNameFor(model => model.Description)</dt>
+						<dd>@Html.DisplayFor(model => model.Description)</dd>
+						<dt>
+							@Html.DisplayNameFor(model => model.ServicedAt)
+						</dt>
+						<dd>
+							@{ if (Model.ServicedAt != null)
+								{
+								@Convert.ToDateTime(Model.ServicedAt).ToString("dd MMM yyyy")
+								}
+							}
+						</dd>
+						<dt>
+							@Html.DisplayNameFor(model => model.UpdatedAt)
+						</dt>
+						<dd>
+							@{ if (Model.UpdatedAt != null)
+								{
+								@Convert.ToDateTime(Model.UpdatedAt).ToString("dd MMM yyyy")
+								}
+							}
+						</dd>
+
+						<dt>
+							@Html.DisplayNameFor(model => model.Address)
+						</dt>
+						<dd>
+							@Html.DisplayFor(model => model.Address.FullAddress)
+						</dd>
+
+						<dt>
+							@Html.DisplayNameFor(model => model.Service)
+						</dt>
+
+						<dd>@Model.ServiceDropDownList.FirstOrDefault(s => s.Value == Model.ServiceId.ToString()).Text </dd>
+
+						<dt>@Html.DisplayNameFor(model => model.Status)</dt>
+						<dd>
+							@Html.Partial("_JobStatus", @Model.Status)
+
+						</dd>
+						<hr />
+						<dt>@Html.DisplayNameFor(model => model.UpdatedCommentAt)</dt>
+						<dd>@Html.DisplayFor(model => model.UpdatedCommentAt)</dd>
+						<dt>@Html.DisplayNameFor(model => model.Comment)</dt>
+						<dd>
+							@Html.TextAreaFor(model => model.Comment, new { @class = "form-control", @Rows = 5 })
+							@Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
+						</dd>
+						<dt></dt>
+						<dd>
+							<input type="submit" value="Save" class="btn btn-primary" />
+						</dd>
+
+					</dl>
+								}
+				<hr />
+				@Html.ActionLink("Back to My pending tasks", "MyPendingTasks", null, new { @class = "btn btn-success btn-sm", @title = "My pending tasks" })
+			</div>
+		</div>
+	</div>
+</div>

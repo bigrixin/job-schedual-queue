@@ -1,0 +1,55 @@
+﻿@using MvcCheckBoxList.Model;
+@model MyAbilityFirst.Models.JobViewModel
+@{
+	ViewBag.Title = "Details";
+}
+<div class="navbar-left">
+	@Html.Action("_MyAccountSidebar", "MyAccount")
+</div>
+
+<div class="main-content-wrapper">
+	<div class="row">
+		<div class="col-md-12">
+			<h1>Job details</h1>
+			<div class="card card-solid">
+				<dl class="dl-horizontal">
+					<dt>Patient</dt>
+					<dd>
+						@{if (Model.PatientId != 0)
+							{
+							@Html.ActionLink(Model.PatientDropDownList.FirstOrDefault(s => s.Value == Model.PatientId.ToString()).Text, "myaccount", "patient", new { id = Model.PatientId }, null)
+							}
+						}
+					</dd>
+
+					<dt>@Html.DisplayNameFor(model => model.Title)</dt>
+					<dd>@Html.DisplayFor(model => model.Title)</dd>
+					<dt>@Html.DisplayNameFor(model => model.Description)</dt>
+					<dd>@Html.DisplayFor(model => model.Description)</dd>
+					<dt>@Html.DisplayNameFor(model => model.Address)</dt>
+					<dd>@Html.DisplayFor(model => model.Address.FullAddress)</dd>
+					<dt>@Html.DisplayNameFor(model => model.GenderId)</dt>
+					<dd>@Model.GenderDropDownList.FirstOrDefault(g => g.Value == Model.GenderId.ToString()).Text</dd>
+					<dt>@Html.DisplayNameFor(model => model.ServiceId)</dt>
+					<dd>@Model.ServiceDropDownList.FirstOrDefault(s => s.Value == Model.ServiceId.ToString()).Text</dd>
+					<dt>@Html.DisplayNameFor(model => model.ServicedAt)</dt>
+					<dd>@Html.DisplayFor(model => model.ServicedAt)</dd>
+					<dt>@Html.DisplayNameFor(model => model.Status)</dt>
+					<dd>@Html.Partial("_JobStatus", Model.Status)</dd>
+					<dt>@Html.DisplayNameFor(model => model.PictureURL)</dt>
+					<dd>
+						@if (!String.IsNullOrEmpty(Model.PictureURL))
+						{
+						<img src="@Url.Content(Model.PictureURL)" height="100" width="100">
+						}
+					</dd>
+
+				</dl>
+				<hr>
+				<div>
+ 					@Html.ActionLink("Back to List", "jobs")
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
